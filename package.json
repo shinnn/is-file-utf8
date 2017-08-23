@@ -1,0 +1,44 @@
+{
+  "name": "is-file-utf8",
+  "version": "0.1.0",
+  "description": "Check if a file at the given path is UTF-8-encoded",
+  "repository": "shinnn/is-file-utf8",
+  "author": "Shinnosuke Watanabe (https://github.com/shinnn)",
+  "scripts": {
+    "pretest": "eslint --format=codeframe index.js test.js",
+    "test": "nyc --reporter=html --reporter=text node --throw-deprecation test.js"
+  },
+  "license": "CC0-1.0",
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "file",
+    "check",
+    "encode",
+    "encoding",
+    "utf8",
+    "utf-8",
+    "promise",
+    "async"
+  ],
+  "dependencies": {
+    "is-utf8": "^0.2.1",
+    "pinkie-promise": "^2.0.1",
+    "read-chunk": "^1.0.1"
+  },
+  "devDependencies": {
+    "@shinnn/eslint-config-node": "^4.0.2",
+    "eslint": "^4.5.0",
+    "file-url": "^2.0.2",
+    "nyc": "^11.1.0",
+    "tape": "^4.8.0"
+  },
+  "eslintConfig": {
+    "extends": "@shinnn/node",
+    "rules": {
+      "no-var": "off",
+      "prefer-arrow-callback": "off"
+    }
+  }
+}
