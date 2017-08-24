@@ -24,7 +24,6 @@
   ],
   "dependencies": {
     "is-utf8": "^0.2.1",
-    "pinkie-promise": "^2.0.1",
     "read-chunk": "^1.0.1"
   },
   "devDependencies": {
