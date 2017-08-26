@@ -1,17 +1,16 @@
 'use strict';
 
-var isUtf8 = require('is-utf8');
-var readChunk = require('read-chunk');
+const isUtf8 = require('is-utf8');
+const readChunk = require('read-chunk');
+
+function handleError(err) {
+  if (Array.isArray(err)) {
+    return Promise.reject(err[0]);
+  }
+
+  return Promise.reject(err);
+}
 
 module.exports = function isFileUtf8(path) {
-  return new Promise(function(resolve, reject) {
-    readChunk(path, 0, 4, function(err, buf) {
-      if (err) {
-        reject(err);
-        return;
-      }
-
-      resolve(isUtf8(buf));
-    });
-  });
+  return readChunk(path, 0, 4).then(isUtf8, handleError);
 };
