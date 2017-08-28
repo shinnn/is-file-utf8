@@ -37,12 +37,42 @@ test('isFileUtf8()', async t => {
   }
 
   try {
+    await isFileUtf8('__this_file_does_not_exist__');
+  } catch ({code}) {
+    t.equal(
+      code,
+      'ENOENT',
+      'should be rejected when it cannot find the target file.'
+    );
+  }
+
+  try {
     await isFileUtf8(true);
   } catch ({name}) {
     t.equal(
       name,
       'TypeError',
       'should be rejected when it receives an invalid argument.'
+    );
+  }
+
+  try {
+    await isFileUtf8();
+  } catch (err) {
+    t.equal(
+      err.toString(),
+      'RangeError: Expected 1 argument (path: <string>), but got no arguments instead.',
+      'should be rejected when it receives no arguments.'
+    );
+  }
+
+  try {
+    await isFileUtf8('a', 'b');
+  } catch (err) {
+    t.equal(
+      err.toString(),
+      'RangeError: Expected 1 argument (path: <string>), but got 2 arguments instead.',
+      'should be rejected when it receives too many arguments.'
     );
   }
 

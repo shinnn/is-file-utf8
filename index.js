@@ -11,6 +11,14 @@ function handleError(err) {
   return Promise.reject(err);
 }
 
-module.exports = function isFileUtf8(path) {
-  return readChunk(path, 0, 4).then(isUtf8, handleError);
+module.exports = function isFileUtf8(...args) {
+  const arglen = args.length;
+
+  if (arglen !== 1) {
+    return Promise.reject(new RangeError(`Expected 1 argument (path: <string>), but got ${
+      arglen === 0 ? 'no' : arglen
+    } arguments instead.`));
+  }
+
+  return readChunk(args[0], 0, 4).then(isUtf8, handleError);
 };
