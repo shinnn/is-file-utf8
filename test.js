@@ -61,7 +61,7 @@ test('isFileUtf8()', async t => {
   } catch (err) {
     t.equal(
       err.toString(),
-      'RangeError: Expected 1 argument (path: <string>), but got no arguments instead.',
+      'RangeError: Expected 1 argument (path: <string|Buffer|URL>), but got no arguments instead.',
       'should be rejected when it receives no arguments.'
     );
   }
@@ -71,7 +71,7 @@ test('isFileUtf8()', async t => {
   } catch (err) {
     t.equal(
       err.toString(),
-      'RangeError: Expected 1 argument (path: <string>), but got 2 arguments instead.',
+      'RangeError: Expected 1 argument (path: <string|Buffer|URL>), but got 2 arguments instead.',
       'should be rejected when it receives too many arguments.'
     );
   }

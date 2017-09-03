@@ -12,7 +12,7 @@ module.exports = async function isFileUtf8(...args) {
   const arglen = args.length;
 
   if (arglen !== 1) {
-    throw new RangeError(`Expected 1 argument (path: <string>), but got ${
+    throw new RangeError(`Expected 1 argument (path: <string|Buffer|URL>), but got ${
       arglen === 0 ? 'no' : arglen
     } arguments instead.`);
   }
