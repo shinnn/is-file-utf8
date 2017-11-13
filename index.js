@@ -5,16 +5,22 @@ const {open, read} = require('fs');
 
 const isUtf8 = require('is-utf8');
 
+const ARG_SPEC = 'Expected 1 argument (path: <string|Buffer|URL>)';
 const promisifiedOpen = promisify(open);
 const promisifiedRead = promisify(read);
 
 module.exports = async function isFileUtf8(...args) {
   const arglen = args.length;
 
+  if (arglen === 0) {
+    const error = new RangeError(`${ARG_SPEC}, but got none.`);
+    error.code = 'ERR_MISSING_ARGS';
+
+    throw error;
+  }
+
   if (arglen !== 1) {
-    throw new RangeError(`Expected 1 argument (path: <string|Buffer|URL>), but got ${
-      arglen === 0 ? 'no' : arglen
-    } arguments instead.`);
+    throw new RangeError(`${ARG_SPEC}, but got ${arglen} arguments instead.`);
   }
 
   const fd = await promisifiedOpen(args[0], 'r');

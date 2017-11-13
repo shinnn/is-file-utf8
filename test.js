@@ -61,7 +61,7 @@ test('isFileUtf8()', async t => {
   } catch (err) {
     t.equal(
       err.toString(),
-      'RangeError: Expected 1 argument (path: <string|Buffer|URL>), but got no arguments instead.',
+      'RangeError: Expected 1 argument (path: <string|Buffer|URL>), but got none.',
       'should be rejected when it receives no arguments.'
     );
   }
