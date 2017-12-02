@@ -10,21 +10,21 @@ const promisifiedOpen = promisify(open);
 const promisifiedRead = promisify(read);
 
 module.exports = async function isFileUtf8(...args) {
-  const arglen = args.length;
+	const arglen = args.length;
 
-  if (arglen === 0) {
-    const error = new RangeError(`${ARG_SPEC}, but got none.`);
-    error.code = 'ERR_MISSING_ARGS';
+	if (arglen === 0) {
+		const error = new RangeError(`${ARG_SPEC}, but got none.`);
+		error.code = 'ERR_MISSING_ARGS';
 
-    throw error;
-  }
+		throw error;
+	}
 
-  if (arglen !== 1) {
-    throw new RangeError(`${ARG_SPEC}, but got ${arglen} arguments instead.`);
-  }
+	if (arglen !== 1) {
+		throw new RangeError(`${ARG_SPEC}, but got ${arglen} arguments instead.`);
+	}
 
-  const fd = await promisifiedOpen(args[0], 'r');
-  const {buffer, bytesRead} = await promisifiedRead(fd, Buffer.alloc(4), 0, 4, 0);
+	const fd = await promisifiedOpen(args[0], 'r');
+	const {buffer, bytesRead} = await promisifiedRead(fd, Buffer.alloc(4), 0, 4, 0);
 
-  return isUtf8(bytesRead < 4 ? buffer.slice(0, bytesRead) : buffer);
+	return isUtf8(bytesRead < 4 ? buffer.slice(0, bytesRead) : buffer);
 };
