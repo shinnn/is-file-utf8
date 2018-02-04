@@ -17,7 +17,7 @@ const isFileUtf8 = require('is-file-utf8');
 
 ## Installation
 
-[Use npm.](https://docs.npmjs.com/cli/install)
+[Use](https://docs.npmjs.com/cli/install) [npm](https://docs.npmjs.com/getting-started/what-is-npm).
 
 ```
 npm install is-file-utf8
@@ -36,4 +36,4 @@ Return: `Promise<boolean>`
 
 ## License
 
-[Creative Commons Zero v1.0 Universal](https://creativecommons.org/publicdomain/zero/1.0/deed)
+[ISC License](./LICENSE) © 2018 Shinnosuke Watanabe
